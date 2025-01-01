@@ -1,4 +1,5 @@
-- C malloc() method
+# C malloc() method
+
     memory allocation
     used to dynamically allocate a single large block of memory with the specified size. 
     It returns a pointer of type void 
@@ -20,7 +21,7 @@
 
     If space is insufficient, allocation fails and returns a NULL pointer.
 
-```    
+    ```
     #include <stdio.h>
     #include <stdlib.h>
 
@@ -65,11 +66,10 @@
 
         return 0;
     }
+    ```
 
+# calloc()
 
-```
-
-- calloc() 
     contiguous (متجاور) allocation 
     allocate the specified number of blocks of memory of the specified type
 
@@ -86,13 +86,14 @@
 
     If space is insufficient, allocation fails and returns a NULL pointer.
 
-- Free 
+# Free()
+
     de-allocate the memory. 
     helps to reduce wastage of memory by freeing it.
 
-    Syntax : 
-            free(ptr) ;
-    
+    Syntax :
+        free(ptr) ;
+
     ```
     #include <stdio.h>
     #include <stdlib.h>
@@ -142,7 +143,7 @@
     }
     ```
 
-- realloc()
+# realloc()
     re-allocation
     change the memory allocation of a previously allocated memory.
 
@@ -150,5 +151,6 @@
             ptr = realloc(ptr, newSize);
  
     
-for solve 
+# for solve
+ 
     https://www.examveda.com/c-program/practice-mcq-question-on-memory-allocation/
