@@ -33,6 +33,30 @@ void Insert_array(struct Array *arr, int index, int x)
     }
 }
 
+void Delete(struct Array *arr, int index)
+{
+    int x = 0;
+    int i = 0;
+
+    if(index >= 0 && index < arr->length)
+    {
+        x = arr->A[index];
+        for(i = index; i < arr->length - 1; i++)
+        {
+            arr->A[i] = arr->A[i + 1];
+        }
+    }
+    arr->length--;
+}
+
+void Append(struct Array *arr, int x)
+{
+    if(arr->length < arr->size)
+    {
+        arr->A[arr->length++] = x;
+    }
+}
+
 int main(int argc , char *argv[])
 {
     struct Array arr;
@@ -46,9 +70,11 @@ int main(int argc , char *argv[])
     }
 
     Display(arr);
-    Insert_array(&arr, 1, 10);
+    //Insert_array(&arr, 1, 10);
+    //Delete(&arr, 1);
+    //Append(&arr, 44);
     Display(arr);
-
+    
     free(arr.A);
     return 0 ;
 }
