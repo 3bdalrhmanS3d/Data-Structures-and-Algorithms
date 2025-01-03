@@ -79,6 +79,70 @@ void BubbleSort(struct Array *arr)
     }
 }
 
+int linearSearch(struct Array arr, int key)
+{
+    int i;
+    for(i =0 ; i < arr.length;i++)
+    {
+        if(key == arr.A[i])
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int BinarySearch(struct Array arr, int key)
+{
+    SortArray(&arr);
+    int left = 0 ;
+    int right = arr.length - 1;
+    int mid;
+
+    while(left < right)
+    {
+        mid = (left + right) / 2;
+
+        if(key == arr.A[mid])
+        {
+            return mid;
+        }
+        else if(key < arr.A[mid])
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
+void Reverse(struct Array *arr)
+{
+    int i, j;
+    for(i = 0, j = arr->length - 1; i < j; i++, j--)
+    {
+        Swap(&arr->A[i], &arr->A[j]);
+    }
+
+}
+
+void ShiftArray(struct Array *arr , int n)
+{
+    for(int i = 0 ; i < n ; i++)
+    {
+        arr->A[i] = 0;
+    }
+    for(int i = n ; i < arr->length ; i++)
+    {
+        arr->A[i-n] = arr->A[i];
+    }
+    arr->length -= n;
+}
+
 void Append(struct Array *arr, int x)
 {
     if(arr->length < arr->size)
@@ -137,7 +201,9 @@ int main(int argc , char *argv[])
         printf("4. Bubble Sort\n");
         printf("5. Append\n");
         printf("6. Sort\n");
-        printf("7. Exit\n");
+        printf("7. Linear Search\n");
+        printf("8. Binary Search\n");
+        printf("9. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         
@@ -171,6 +237,32 @@ int main(int argc , char *argv[])
             case 7:
                 printf("Exiting program.\n");
                 exit(0);
+                break;
+            case 8:
+                printf("Enter the value to search: ");
+                scanf("%d", &value);
+                index = linearSearch(arr, value);
+                if(index != -1)
+                {
+                    printf("Element found at index %d\n", index);
+                }
+                else
+                {
+                    printf("Element not found.\n");
+                }
+                break;
+            case 9:
+                printf("Enter the value to search: ");
+                scanf("%d", &value);
+                index = BinarySearch(arr, value);
+                if(index != -1)
+                {
+                    printf("Element found at index %d\n", index);
+                }
+                else
+                {
+                    printf("Element not found.\n");
+                }
                 break;
             default:
                 printf("Invalid choice. Please try again.\n");
