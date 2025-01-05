@@ -152,6 +152,9 @@ void SearchAvailableRooms(struct Array arr) {
     }
 }
 
+void ClearScreen() {
+    system("cls"); // Clear screen on Windows
+}
 
 int main(int argc, char *argv[])
 {
@@ -164,6 +167,7 @@ int main(int argc, char *argv[])
     char status[10];
 
     while (1) {
+        ClearScreen(); // Clear the screen at the start of the loop
         printf("\nHotel Management System\n");
         printf("1. View All Rooms\n");
         printf("2. Add Room\n");
@@ -211,6 +215,10 @@ int main(int argc, char *argv[])
             default:
                 printf("Invalid choice. Try again.\n");
         }
+        printf("\nPress Enter to continue...");
+        getchar(); // Capture the newline left by the previous input
+        getchar(); // Wait for user to press Enter
+    }
 
     return 0 ;
 }
