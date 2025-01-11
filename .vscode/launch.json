@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "e:/Data Structures and Algorithms/Arrays/DynaminMemory",
-      "program": "e:/Data Structures and Algorithms/Arrays/DynaminMemory/build/Debug/outDebug",
+      "cwd": "e:/Data Structures and Algorithms/LinkedList",
+      "program": "e:/Data Structures and Algorithms/LinkedList/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

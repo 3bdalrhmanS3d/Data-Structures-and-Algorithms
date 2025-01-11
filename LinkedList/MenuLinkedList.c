@@ -3,7 +3,6 @@
 #include <string.h>
 #include <math.h>
 #include <limits.h>
-
 // Structure to represent a node in linked list
 struct Node {
     int data;
@@ -35,13 +34,19 @@ void ClearScreen() {
     #endif
 }
 
-int main(int argc, char *argv[])
+void pause() {
+    printf("\nPress Enter to continue...");
+    while (getchar() != '\n');
+    getchar();
+}
+
+int main()
 {
     int choice = 0;
-    while(choice >= 0 && choice <= 13)
+    while(choice>=0)
     {
         ClearScreen(); // Clear the screen at the start of the loop
-        printf("\nLinked List Operations\n");
+        printf("Linked List Operations\n");
         printf("1. Insert at beginning\n");
         printf("2. Insert at end\n");
         printf("3. Insert at a random position\n");
@@ -58,54 +63,67 @@ int main(int argc, char *argv[])
 
         printf("\nEnter your choice: ");
         scanf("%d", &choice);
-
+        int item,LinkedLen ;
         switch(choice)
         {
             case 1:
-                int item;
                 printf("Enter the value to be inserted: ");
                 scanf("%d",&item);
                 beginsert(item);
+                pause();
                 break;
             case 2:
                 lastinsert();
+                pause();
                 break;
             case 3:
                 randominsert();
+                pause();
                 break;
             case 4:
                 begin_delete();
+                pause();
                 break;
             case 5:
                 last_delete();
+                pause();
                 break;
             case 6:
                 random_delete();
+                pause();
                 break;
             case 7:
                 display();
+                pause();
                 break;
             case 8:
                 search();
+                pause();
                 break;
             case 9:
                 MinMax();
+                pause();
                 break;
             case 10:
                 reverse();
+                pause();
                 break;
             case 11:
                 sort();
+                display();
+                pause();
                 break;
             case 12:
-                int LinkedLen = size();
-                printf("The length of the linked list is: %d\n", LinkedLen );
+                printf("The length of the linked list is: %d\n", LinkedLen = size() );
+                pause();
                 break;
             case 13:
                 printf("Thank you for using the program. Goodbye!\n");
+                
                 exit(0);
             default:
                 printf("Invalid choice! Please try again.\n");
+                pause();
         }
 
     }
@@ -140,7 +158,7 @@ void display() {
     
     printf("List elements are: ");
     while (ptr != NULL) {
-        printf("%d -> ,", ptr->data);
+        printf("%d -> ", ptr->data);
         ptr = ptr->next;
     }
     printf("NULL\n");
@@ -269,7 +287,7 @@ void last_delete()
     if (head->next == NULL) {
         ptr = head;
         head = NULL; // 
-        free(ptr);   // تحرير الذاكرة للعقدة
+        free(ptr);
         printf("The only node in the list was deleted.\n");
         return;
     }
@@ -328,32 +346,32 @@ void random_delete() {
     free(ptr);
 }
 
-void sort()
+void sort() 
 {
     struct Node *ptr, *temp;
     int swap;
+    int swapped;
 
     if (head == NULL) {
         printf("List is empty\n");
         return;
     }
 
-    ptr = head;
-    while (ptr!= NULL) 
-    {
-        temp = ptr->next;
-        while (temp!= NULL) 
-        {
-            if (ptr->data > temp->data) 
-            {
+    do {
+        ptr = head;
+        swapped = 0;
+
+        while (ptr->next != NULL) {
+            if (ptr->data > ptr->next->data) {
                 swap = ptr->data;
-                ptr->data = temp->data;
-                temp->data = swap;
+                ptr->data = ptr->next->data;
+                ptr->next->data = swap;
+                swapped = 1;
             }
-            temp = temp->next;
+            ptr = ptr->next;
         }
-        ptr = ptr->next;
-    }
+    } while (swapped);
+
     printf("List sorted in ascending order\n");
 }
 
@@ -420,3 +438,4 @@ void search() {
         printf("Value %d not found in the list\n", search_item);
     }
 }
+
